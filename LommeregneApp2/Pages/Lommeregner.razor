@@ -42,6 +42,9 @@
         <div class="col-sm-2">
             <button @onclick="DivideNumbers" class="btn btn-info">Divide (X)</button>
         </div>
+        <div class="col-sm-2">
+            <button id="PowBtn" @onclick="PowNumbers" class="btn btn-info">Power of (^)</button>
+        </div>
     </div>
 </div>
 @code {
@@ -70,5 +73,9 @@
         {
             finalresult = "Cannot Divide by Zero";
         }
+    }
+    void PowNumbers()
+    {
+        finalresult = Math.Pow(Convert.ToDouble(num1), Convert.ToDouble(num2)).ToString();
     }
 }
