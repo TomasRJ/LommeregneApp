@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LommeregneApp2\LommeregneApp.csproj" />
+    <ProjectReference Include="..\LommeregneAppCode\LommeregneApp.csproj" />
   </ItemGroup>
 
 
