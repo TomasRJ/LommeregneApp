@@ -15,13 +15,11 @@ namespace LommeregnerTest
       _sut = new AdvancedOperations(_logger);
     }
 
-    [Fact]
-    public void PercentageFunctionality_ShouldReturnExpectedResult_GivenTwoValidInputs()
+    [Theory]
+    [InlineData(80, 25, 20)]
+    public void PercentageFunctionality_ShouldReturnExpectedResult_GivenTwoValidInputs(int num1, int num2, int expected)
     {
       // Arrange
-      var num1 = 80;
-      var num2 = 25;
-      var expected = 20;
 
       // Act
       var result = _sut.Percent(num1, num2);

@@ -2,6 +2,7 @@
 using LommeregneApp.Features;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
+using System.Collections;
 
 namespace LommeregnerTest
 {
@@ -15,13 +16,12 @@ namespace LommeregnerTest
       _sut = new AdvancedOperations(_logger);
     }
 
-    [Fact]
-    public void PowerFunctionality_ShouldReturnExpectedResult_GivenTwoValidInputs()
+    [Theory]
+    [ClassData(typeof(PowerTestData))]
+    public void PowerFunctionality_ShouldReturnExpectedResult_GivenTwoValidInputs(int num1, int num2, int expected)
     {
       // Arrange
-      var num1 = 2;
-      var num2 = 2;
-      var expected = 4;
+
 
       // Act
       var result = _sut.Pow(num1, num2);
@@ -41,5 +41,17 @@ namespace LommeregnerTest
       // Assert
       _logger.Received().LogInformation("Power");
     }
+
+  }
+
+  public class PowerTestData : IEnumerable<object[]>
+  {
+    public IEnumerator<object[]> GetEnumerator()
+    {
+      yield return new object[] { 2, 2, 4 };
+      yield return new object[] { 3, 5, 243 };
+    }
+
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
   }
 }

@@ -8,19 +8,27 @@ namespace LommeregnerTest
   public class SquareRootFunctionalityTests
   {
     private readonly ILogger<AdvancedOperations> _logger = Substitute.For<ILogger<AdvancedOperations>>();
-    private readonly IAdvancedOperations _sut;
+    private readonly IAdvancedOperations _sut;  
+
+    public static IEnumerable<object[]> TestsData => new List<object[]>
+    {
+      new object[] {4, 2},
+      new object[] {81, 9},
+      new object[] {36, 6},
+      new object[] {100, 10},
+      new object[] {25, 5},
+    };
 
     public SquareRootFunctionalityTests()
     {
       _sut = new AdvancedOperations(_logger);
     }
 
-    [Fact]
-    public void SquareRootFunctionality_ShouldReturnExpectedResult_GivenTwoValidInputs()
+    [Theory]
+    [MemberData(nameof(TestsData))]
+    public void SquareRootFunctionality_ShouldReturnExpectedResult_GivenTwoValidInputs(int num1, int expected)
     {
       // Arrange
-      var num1 = 4;
-      var expected = 2;
 
       // Act
       var result = _sut.SquareRoot(num1);
